@@ -13,7 +13,7 @@ from io import BytesIO
 DATA_DIR = Path('data_sample/AOI_11_Rotterdam')  # Base directory of data directory
 IN_IMG_DIR = 'SAR-Intensity'  # Path from DATA_DIR to directory of images to match new maps images with
 MAP_DIR = 'Map'  # Path from DATA_DIR to directory where new map images will live
-MAPBOX_API_KEY = ' '  # Mapbox API key
+MAPBOX_API_KEY = ''  # Mapbox API key
 STYLE_USER = 'epound'  # Along with STYLE_ID, don't change unless you want to change the map style
 STYLE_ID = 'ckpb8wcyx03rh17mttq4zoza8'  # This style contains no labels
 ###############################################
