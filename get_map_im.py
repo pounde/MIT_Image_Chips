@@ -27,6 +27,7 @@ imgs = list(df.ImageId.unique())
 
 for img in imgs:
 
+    print(f'Gathering map for image {img}')
     new_file = OUT_DIR / f'{img}.tif'
 
     # Get our bounds to build the URL
