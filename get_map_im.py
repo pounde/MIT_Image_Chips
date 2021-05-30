@@ -6,6 +6,8 @@ from PIL import Image
 import numpy as np
 import requests
 from io import BytesIO
+from time import sleep
+import timeit
 
 ###############################################
 # Set parameters here
@@ -21,6 +23,9 @@ STYLE_ID = 'ckpb8wcyx03rh17mttq4zoza8'  # This style contains no labels
 # Concat our output directory and create if it doesn't exist
 OUT_DIR = Path(DATA_DIR / MAP_DIR)
 OUT_DIR.mkdir(exist_ok=True)
+
+# Start our timer
+t0 = timeit.default_timer()
 
 df = pd.read_csv(DATA_DIR / 'SummaryData/SN6_TrainSample_AOI_11_Rotterdam_Buildings.csv')
 imgs = list(df.ImageId.unique())
@@ -57,3 +62,9 @@ for img in imgs:
         # Add geospatial data and write
         with rasterio.open(new_file, 'w', **meta) as outds:
             outds.write(move)
+
+        # Sleep to prevent getting rate limited (1,250/hr)
+        sleep(.05)
+
+elapsed = timeit.default_timer() - t0
+print(f'Run complete in {elapsed / 60:.3f} min')
